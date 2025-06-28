@@ -16,6 +16,7 @@ DEBUG_DRIVERS_DIR = $(TI_CCS_DIR)/ccs_base/DebugServer/drivers
 CC = $(MSPGCC_BIN_DIR)/msp430-elf-gcc
 RM = rm
 DEBUG = LD_LIBRARY_PATH=$(DEBUG_DRIVERS_DIR) $(DEBUG_BIN_DIR)/mspdebug
+CPPCHECK = cppcheck 
 
 # Files
 TARGET = $(BIN_DIR)/blink
@@ -47,10 +48,13 @@ $(OBJ_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Phony targets
-.PHONY: all clean flash
+.PHONY: all clean flash cppcheck
 
 clean:
 	$(RM) -r $(BUILD_DIR)
 
 flash: $(TARGET)
 	$(DEBUG) tilib "prog $(TARGET)"
+
+cppcheck:
+	@$(CPPCHECK) $(SOURCES)
