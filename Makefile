@@ -1,6 +1,6 @@
 # Directories
-MSPGCC_DIR = /home/terence/Downloads/msp430-gcc-9.3.1.11_linux64
-MSPGCC_ROOT_DIR = /home/terence/Downloads/msp430-gcc-support-files
+MSPGCC_DIR = /home/terence/dev/tools/msp430-gcc
+MSPGCC_ROOT_DIR = /home/terence/dev/tools/msp430-gcc
 MSPGCC_BIN_DIR = $(MSPGCC_DIR)/bin
 MSPGCC_INCLUDE_DIR = $(MSPGCC_ROOT_DIR)/include
 
