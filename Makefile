@@ -1,4 +1,5 @@
 # Makefile - MSP430 toolchain
+# This is a test for github
 
 # TOOLS_PATH = /home/terence/dev/tools
 
