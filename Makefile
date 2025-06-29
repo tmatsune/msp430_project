@@ -1,4 +1,5 @@
 # TOOLS_PATH = /home/terence/dev/tools
+
 # Directories
 TOOLS_DIR = $(TOOLS_PATH)
 MSPGCC_ROOT_DIR = $(TOOLS_DIR)/msp430-gcc
