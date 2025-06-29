@@ -1,6 +1,8 @@
+# Makefile - MSP430 toolchain
+
 # TOOLS_PATH = /home/terence/dev/tools
 
-# Directories
+# Directories 
 TOOLS_DIR = $(TOOLS_PATH)
 MSPGCC_ROOT_DIR = $(TOOLS_DIR)/msp430-gcc
 MSPGCC_BIN_DIR = $(MSPGCC_ROOT_DIR)/bin
@@ -22,7 +24,6 @@ CPPCHECK = cppcheck
 
 # Files
 TARGET = $(BIN_DIR)/blink
-
 SOURCES = src/main.c led.c
 OBJECT_NAMES = $(notdir $(SOURCES:.c=.o))
 OBJECTS = $(patsubst %,$(OBJ_DIR)/%,$(OBJECT_NAMES))
