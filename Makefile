@@ -1,14 +1,15 @@
+# TOOLS_PATH = /home/terence/dev/tools
 # Directories
-MSPGCC_DIR = /home/terence/dev/tools/msp430-gcc
-MSPGCC_ROOT_DIR = /home/terence/dev/tools/msp430-gcc
-MSPGCC_BIN_DIR = $(MSPGCC_DIR)/bin
+TOOLS_DIR = $(TOOLS_PATH)
+MSPGCC_ROOT_DIR = $(TOOLS_DIR)/msp430-gcc
+MSPGCC_BIN_DIR = $(MSPGCC_ROOT_DIR)/bin
 MSPGCC_INCLUDE_DIR = $(MSPGCC_ROOT_DIR)/include
 
 BUILD_DIR = build
 OBJ_DIR = $(BUILD_DIR)/obj
 BIN_DIR = $(BUILD_DIR)/bin
 
-TI_CCS_DIR = /home/terence/ti/ccs2020/ccs
+TI_CCS_DIR = $(TOOLS_DIR)/ccs2020/ccs
 DEBUG_BIN_DIR = $(TI_CCS_DIR)/ccs_base/DebugServer/bin
 DEBUG_DRIVERS_DIR = $(TI_CCS_DIR)/ccs_base/DebugServer/drivers
 
