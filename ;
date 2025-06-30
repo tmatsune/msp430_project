@@ -1,7 +1,6 @@
 #include <msp430.h>
 #include "led.h"
-#include "drivers/i2c.h"
-#include "app/drive.h"
+//#include "drivers/i2c.h"
 
 // sudo make flash 
 // space + e open left window 
@@ -12,7 +11,7 @@
 
 int main(void)
 {
-    i2c_init();
+    //i2c_init();
     volatile unsigned int i;
     WDTCTL = WDTPW + WDTHOLD; // Stop watchdog timer
     led_init();
