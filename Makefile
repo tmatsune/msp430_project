@@ -22,10 +22,11 @@ CC = $(MSPGCC_BIN_DIR)/msp430-elf-gcc
 RM = rm
 DEBUG = LD_LIBRARY_PATH=$(DEBUG_DRIVERS_DIR) $(DEBUG_BIN_DIR)/mspdebug
 CPPCHECK = cppcheck 
+FORMAT = clang-format 
 
 # Files
 TARGET = $(BIN_DIR)/blink
-SOURCES = src/main.c led.c
+SOURCES = src/main.c src/led.c  
 OBJECT_NAMES = $(notdir $(SOURCES:.c=.o))
 OBJECTS = $(patsubst %,$(OBJ_DIR)/%,$(OBJECT_NAMES))
 
@@ -52,7 +53,7 @@ $(OBJ_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Phony targets
-.PHONY: all clean flash cppcheck
+.PHONY: all clean flash cppcheck format 
 
 clean:
 	$(RM) -r $(BUILD_DIR)
@@ -62,3 +63,6 @@ flash: $(TARGET)
 
 cppcheck:
 	@$(CPPCHECK) $(SOURCES)
+
+format: 
+	@$(FORMAT) -i $(SOURCES)
