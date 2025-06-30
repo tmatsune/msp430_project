@@ -22,7 +22,7 @@ CPPCHECK = cppcheck
 FORMAT = clang-format 
 
 # Files
-TARGET = $(BIN_DIR)/blink
+TARGET = $(BIN_DIR)/main
 SOURCES = src/main.c src/led.c src/drivers/i2c.c src/app/drive.c 
 OBJECT_NAMES = $(notdir $(SOURCES:.c=.o))
 OBJECTS = $(patsubst %,$(OBJ_DIR)/%,$(OBJECT_NAMES))
