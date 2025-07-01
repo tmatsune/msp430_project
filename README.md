@@ -1,4 +1,17 @@
 # Nsumo
+
+// sudo make flash 
+// space + e open left window 
+// space + x to close left window 
+// space + h to open terminal 
+// ctrl + d to close terminal 
+
+/*
+make clean 
+make all TOOLS_PATH=/home/terence/dev/tools
+sudo make flash TOOLS_PATH=/home/terence/dev/tools
+*/
+
 This repository tracks the code of Nsumo (500g 10x10cm Sumobot) as I re-write it
 from scratch and show the complete process in a [YouTube series](https://www.youtube.com/watch?v=g9KbXJydf8I&t=1s).
 You find the hardware design [here](https://github.com/artfulbytes/nsumo_hardware.git).

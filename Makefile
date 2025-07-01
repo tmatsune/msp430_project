@@ -23,12 +23,12 @@ FORMAT = clang-format
 
 # Files
 TARGET = $(BIN_DIR)/main
-SOURCES = src/main.c src/led.c src/drivers/i2c.c src/app/drive.c 
+SOURCES = src/main.c src/led.c src/drivers/i2c.c src/app/drive.c src/app/io.c src/drivers/mcu_init.c
 OBJECT_NAMES = $(notdir $(SOURCES:.c=.o))
 OBJECTS = $(patsubst %,$(OBJ_DIR)/%,$(OBJECT_NAMES))
 
 # Allow make to find source files in src/ and current dir
-vpath %.c src src/drivers src/app
+vpath %.c src src/drivers src/app src/common
 
 # Flags
 MCU = msp430g2553
