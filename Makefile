@@ -1,6 +1,3 @@
-# Makefile - MSP430 toolchain
-# This is a test for github
-
 # TOOLS_PATH = /home/terence/dev/tools
 
 # Directories 
@@ -25,18 +22,18 @@ CPPCHECK = cppcheck
 FORMAT = clang-format 
 
 # Files
-TARGET = $(BIN_DIR)/blink
-SOURCES = src/main.c src/led.c  
+TARGET = $(BIN_DIR)/main
+SOURCES = src/main.c src/led.c src/drivers/i2c.c src/app/drive.c 
 OBJECT_NAMES = $(notdir $(SOURCES:.c=.o))
 OBJECTS = $(patsubst %,$(OBJ_DIR)/%,$(OBJECT_NAMES))
 
 # Allow make to find source files in src/ and current dir
-vpath %.c src .
+vpath %.c src src/drivers src/app
 
 # Flags
 MCU = msp430g2553
 WFLAGS = -Wall -Wextra -Werror -Wshadow
-CFLAGS = -mmcu=$(MCU) $(WFLAGS) -I$(MSPGCC_INCLUDE_DIR) -Og -g
+CFLAGS = -mmcu=$(MCU) $(WFLAGS) -I$(MSPGCC_INCLUDE_DIR) -Isrc -Og -g
 LDFLAGS = -mmcu=$(MCU) -L$(MSPGCC_INCLUDE_DIR)
 
 # Default rule
