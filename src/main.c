@@ -151,8 +151,6 @@ void test_p1_2_output_high(void) {
 int main(void)
 {
     // test_blink_led();
-    // test_launchpad_io_pins_output();
-    // test_launchpad_io_pins_input();
     // test_p1_2_output_high();
     // test_assert();
     test_blink_led();
