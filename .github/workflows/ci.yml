@@ -8,5 +8,5 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v3
       - run: make cppcheck
-      - run: TOOLS_PATH=/home/ubuntu/dev/tools make
-
+      - run: TOOLS_PATH=/home/ubuntu/dev/tools make HW=NSUMO 
+      - run: TOOLS_PATH=/home/ubuntu/dev/tools make HW=LAUNCHPAD

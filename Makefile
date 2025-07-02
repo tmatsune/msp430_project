@@ -1,12 +1,23 @@
 # TOOLS_PATH = /home/terence/dev/tools
 
+# Check Arguments 
+ifeq ($(HW),LAUNCHPAD) # HW argument
+TARGET_NAME=launchpad
+else ifeq ($(HW),NSUMO)
+TARGET_NAME=nsumo
+else ifeq ($(MAKECMDGOALS),clean)
+else ifeq ($(MAKECMDGOALS),cppcheck)
+else
+$(error "Must pass HW=LAUNCHPAD or HW=NSUMO")
+endif
+
 # Directories 
 TOOLS_DIR = $(TOOLS_PATH)
 MSPGCC_ROOT_DIR = $(TOOLS_DIR)/msp430-gcc
 MSPGCC_BIN_DIR = $(MSPGCC_ROOT_DIR)/bin
 MSPGCC_INCLUDE_DIR = $(MSPGCC_ROOT_DIR)/include
 
-BUILD_DIR = build
+BUILD_DIR = build/$(TARGET_NAME)
 OBJ_DIR = $(BUILD_DIR)/obj
 BIN_DIR = $(BUILD_DIR)/bin
 
@@ -30,11 +41,15 @@ OBJECTS = $(patsubst %,$(OBJ_DIR)/%,$(OBJECT_NAMES))
 # Allow make to find source files in src/ and current dir
 vpath %.c src src/drivers src/app src/common
 
+# Defines 
+HW_DEFINE = $(addprefix -D,$(HW))
+DEFINES = $(HW_DEFINE)
+
 # Flags
 MCU = msp430g2553
 WFLAGS = -Wall -Wextra -Werror -Wshadow
-CFLAGS = -mmcu=$(MCU) $(WFLAGS) -I$(MSPGCC_INCLUDE_DIR) -Isrc -Og -g
-LDFLAGS = -mmcu=$(MCU) -L$(MSPGCC_INCLUDE_DIR)
+CFLAGS = -mmcu=$(MCU) $(WFLAGS) -I$(MSPGCC_INCLUDE_DIR) $(DEFINES) -Isrc -Og -g
+LDFLAGS = -mmcu=$(MCU) $(DEFINES) -L$(MSPGCC_INCLUDE_DIR)
 
 # Default rule
 all: $(TARGET)
@@ -48,6 +63,7 @@ $(TARGET): $(OBJECTS)
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
+
 
 # Phony targets
 .PHONY: all clean flash cppcheck format 
