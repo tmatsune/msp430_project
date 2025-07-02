@@ -23,7 +23,7 @@ FORMAT = clang-format
 
 # Files
 TARGET = $(BIN_DIR)/main
-SOURCES = src/main.c src/led.c src/drivers/i2c.c src/app/drive.c src/app/io.c src/drivers/mcu_init.c
+SOURCES = src/main.c src/led.c src/drivers/i2c.c src/app/drive.c src/app/io.c src/drivers/mcu_init.c src/common/assert_handler.c src/drivers/led.c
 OBJECT_NAMES = $(notdir $(SOURCES:.c=.o))
 OBJECTS = $(patsubst %,$(OBJ_DIR)/%,$(OBJECT_NAMES))
 
@@ -33,7 +33,7 @@ vpath %.c src src/drivers src/app src/common
 # Flags
 MCU = msp430g2553
 WFLAGS = -Wall -Wextra -Werror -Wshadow
-CFLAGS = -mmcu=$(MCU) $(WFLAGS) -I$(MSPGCC_INCLUDE_DIR) -Isrc -Og -g
+CFLAGS = -mmcu=$(MCU) $(WFLAGS) -fshort-enums -I$(MSPGCC_INCLUDE_DIR) -Isrc -Og -g
 LDFLAGS = -mmcu=$(MCU) -L$(MSPGCC_INCLUDE_DIR)
 
 # Default rule

@@ -1,15 +1,34 @@
 #include "drivers/io.h"
 #include "drivers/mcu_init.h"
+#include "drivers/led.h"
+#include "common/assert_handler.h"
+#include "common/defines.h"
 #include <msp430.h>
 
-
-
-/*
 static void test_setup(void)
 {
     mcu_init();
 }
+
+/*
+static void test_assert(void)
+{
+  test_setup();
+  ASSERT(0);
+}
 */
+
+static void test_blink_led(void)
+{
+    test_setup();
+    led_init();
+    led_state_e led_state = LED_STATE_OFF;
+    while (1) {
+        led_state = (led_state == LED_STATE_OFF) ? LED_STATE_ON : LED_STATE_OFF;
+        led_set(LED_TEST, led_state);
+        BUSY_WAIT_ms(1000);
+    }
+}
 
 /*
 // TODO: Move to test file
@@ -120,18 +139,22 @@ static void test_launchpad_io_pins_input(void)
 }
 */ 
 
+/*
 void test_p1_2_output_high(void) {
     WDTCTL = WDTPW | WDTHOLD;
     P2DIR |= BIT0 | BIT1 | BIT2 | BIT3 | BIT4 | BIT5 | BIT6 | BIT7;
     P2OUT |= BIT0 | BIT1 | BIT2 | BIT3 | BIT4 | BIT5 | BIT6 | BIT7;
     while (1);       // Infinite loop to keep pin stable
 }
+*/
 
 int main(void)
 {
     // test_blink_led();
     // test_launchpad_io_pins_output();
     // test_launchpad_io_pins_input();
-    test_p1_2_output_high();
+    // test_p1_2_output_high();
+    // test_assert();
+    test_blink_led();
     return 0;
 }
