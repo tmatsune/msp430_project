@@ -1,4 +1,3 @@
-
 #------------------------------
 # Directories
 #------------------------------
@@ -34,6 +33,8 @@ SOURCES := \
   src/main.c \
   src/drivers/pins.c \
 	src/drivers/mcu_init.c \
+	src/drivers/isr.c \
+	src/common/uart_driver.c \
 	src/common/assert_handler.c 
 
 OBJECT_NAMES := $(notdir $(SOURCES:.c=.o))
@@ -53,6 +54,13 @@ MCU := msp430g2553
 WFLAGS := -Wall -Wextra -Werror -Wshadow
 CFLAGS := -mmcu=$(MCU) $(WFLAGS) -fshort-enums -I$(MSPGCC_INCLUDE_DIR) $(DEFINES) -Isrc -Og -g
 LDFLAGS := -mmcu=$(MCU) $(DEFINES) -L$(MSPGCC_INCLUDE_DIR)
+
+# Optional test target
+ifdef TEST
+  TEST_OBJ := $(OBJ_DIR)/test.o
+  TEST_BIN := $(BIN_DIR)/test_$(TEST).elf
+  DEFINES += -DTEST=$(TEST)
+endif
 
 #------------------------------
 # Default Target
@@ -92,3 +100,4 @@ format:
 
 size: $(TARGET)
 	@$(SIZE) $(TARGET)
+
