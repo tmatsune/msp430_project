@@ -1,0 +1,103 @@
+===============================
+MSP430G2553 Pin Setup Reference
+===============================
+
+Author: Terence Matsune
+Target: MSP430G2553 Microcontroller
+Purpose: GPIO setup and interrupt reference for P1.x pins
+
+----------------------------------------
+BASIC GPIO OPERATIONS (Port 1)
+----------------------------------------
+
+1. Set pin as OUTPUT:
+   P1DIR |= BITx;
+
+2. Set pin as INPUT:
+   P1DIR &= ~BITx;
+
+3. Drive pin HIGH (output mode only):
+   P1OUT |= BITx;
+
+4. Drive pin LOW (output mode only):
+   P1OUT &= ~BITx;
+
+5. Toggle pin:
+   P1OUT ^= BITx;
+
+6. Enable internal pull-up/down resistor (input mode):
+   P1REN |= BITx;
+
+7. Configure pull-up resistor (after enabling REN):
+   P1OUT |= BITx;
+
+8. Configure pull-down resistor:
+   P1OUT &= ~BITx;
+
+----------------------------------------
+INTERRUPT SETUP (Port 1.x GPIO)
+----------------------------------------
+
+Example: Configure P1.2 to trigger interrupt on falling edge
+
+1. Set pin as INPUT:
+   P1DIR &= ~BIT2;
+
+2. Enable internal resistor:
+   P1REN |= BIT2;
+
+3. Configure as pull-up:
+   P1OUT |= BIT2;
+
+4. Enable interrupt for pin:
+   P1IE |= BIT2;
+
+5. Set interrupt to trigger on falling edge:
+   P1IES |= BIT2;
+
+6. Clear interrupt flag (important):
+   P1IFG &= ~BIT2;
+
+7. Global interrupt enable:
+   __enable_interrupt(); // or GIE
+
+----------------------------------------
+INTERRUPT SERVICE ROUTINE (ISR)
+----------------------------------------
+
+#pragma vector=PORT1_VECTOR
+__interrupt void Port_1(void)
+{
+    if (P1IFG & BIT2) {
+        // Handle P1.2 interrupt (e.g., button press)
+        P1IFG &= ~BIT2; // Clear interrupt flag
+    }
+}
+
+----------------------------------------
+EXAMPLE INITIALIZATION FUNCTION
+----------------------------------------
+
+void mcu_init(void) {
+    WDTCTL = WDTPW | WDTHOLD;  // Stop watchdog timer
+    gpio_init();               // Set up GPIO
+    __enable_interrupt();      // Enable global interrupts
+}
+
+----------------------------------------
+NOTES
+----------------------------------------
+
+- P1.0 to P1.7 are available as general-purpose GPIOs.
+- Internal pull resistors require both REN and OUT config.
+- Interrupts are only available on Port 1 and Port 2.
+- You MUST clear interrupt flags in your ISR to avoid retriggering.
+
+Pin Mapping Example:
+- P1.1: General Output (e.g., LED)
+- P1.2: Button Input with interrupt
+
+===============================
+End of Reference
+===============================
+

@@ -1,0 +1,22 @@
+
+workflow: 
+1. create a new branch for changes 
+  - git checkout -b feature/my-change
+2. makes changes locally 
+  - run: make 
+  - run static analysis: make cppcheck 
+3. commit changes
+  - git puch origin feature/my-change 
+4. push branch
+  - git push origin featre/my-change 
+5. Open a Pull Request on GitHub 
+
+ci system(github actions + docker)
+when pull request is opened or updated;
+1. trigger
+  - pull request created
+2. github actions workwflow 
+  - file .github/workflows/ci.yml 
+  specifies: 
+    - run on ubuntu-latest
+    - use docker container with msp430 toolchain 
