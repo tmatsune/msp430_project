@@ -23,6 +23,10 @@ int main(void)
 {
   mcu_init();
   configure_pins();
+  uart_init();
 
-  while(1) {};
+  while(1) {
+    uart_print("terence\n"); 
+    DELAY_MS(100);
+  };
 }

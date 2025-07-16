@@ -34,6 +34,7 @@ SOURCES := \
   src/drivers/pins.c \
 	src/drivers/mcu_init.c \
 	src/drivers/isr.c \
+	src/drivers/uart_driver.c \
 	src/common/uart_driver.c \
 	src/common/assert_handler.c 
 
