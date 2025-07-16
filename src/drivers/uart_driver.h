@@ -4,6 +4,7 @@
 void uart_init(void);
 void uart_char_polling(char c);
 void uart_print(char *str);
+void uart_print_num(int num);
 
 /*
   UART is a serial communication protocol that transmits data one bit at a time 

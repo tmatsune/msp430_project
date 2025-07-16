@@ -35,7 +35,9 @@ SOURCES := \
 	src/drivers/mcu_init.c \
 	src/drivers/isr.c \
 	src/drivers/uart_driver.c \
+	src/drivers/ir_remote.c \
 	src/common/uart_driver.c \
+	src/common/ring_buffer.c \
 	src/common/assert_handler.c 
 
 OBJECT_NAMES := $(notdir $(SOURCES:.c=.o))
