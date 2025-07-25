@@ -10,4 +10,3 @@ void led_toggle(void)
 {
   P1OUT ^= 0x01; 
 }
-
