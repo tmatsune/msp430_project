@@ -23,10 +23,13 @@ WFLAGS    = -Wall -Wextra -Werror -Wshadow
 CFLAGS    = -mmcu=$(MCU) $(WFLAGS) -Og -g $(addprefix -I, $(MSP430_INCLUDE))
 LDFLAGS   = -mmcu=$(MCU) $(addprefix -L, $(MSP430_LD))
 DEBUG := LD_LIBRARY_PATH=$(DEBUG_DRIVERS_DIR) $(DEBUG_BIN_DIR)/mspdebug
+CFLAGS += -Isrc
 
 # === Source and Targets ===
 SRCS      = src/main.c \
-						src/drivers/led.c
+						src/drivers/led.c \
+						src/drivers/pins.c
+
 OBJS      = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 TARGET    = $(BIN_DIR)/output.elf
 
