@@ -1,6 +1,7 @@
 # === Paths ===
-TOOLS_PATH       = /home/terence/dev/tools
-MSP430_ROOT      = $(TOOLS_PATH)/msp430-gcc
+# /home/terence/dev/tools
+TOOLS_DIR        = $(TOOLS_PATH)
+MSP430_ROOT      = $(TOOLS_DIR)/msp430-gcc
 MSP430_BIN       = $(MSP430_ROOT)/bin
 MSP430_GCC       = $(MSP430_BIN)/msp430-elf-gcc
 MSP430_INCLUDE   = $(MSP430_ROOT)/include
@@ -11,7 +12,7 @@ OBJ_DIR          = $(BUILD_DIR)/obj
 BIN_DIR          = $(BUILD_DIR)/bin
 
 # /home/terence/dev/tools/ccs2020/ccs/ccs_base/DebugServer/bin
-TI_CCS_DIR = $(TOOLS_PATH)/ccs2020/ccs
+TI_CCS_DIR = $(TOOLS_DIR)/ccs2020/ccs
 DEBUG_BIN_DIR = $(TI_CCS_DIR)/ccs_base/DebugServer/bin
 DEBUG_DRIVERS_DIR = $(TI_CCS_DIR)/ccs_base/DebugServer/drivers
 
