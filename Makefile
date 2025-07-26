@@ -28,7 +28,8 @@ CFLAGS += -Isrc
 # === Source and Targets ===
 SRCS      = src/main.c \
 						src/drivers/led.c \
-						src/drivers/pins.c
+						src/drivers/pins.c \
+						src/drivers/mcu_init.c
 
 OBJS      = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 TARGET    = $(BIN_DIR)/output.elf

@@ -55,29 +55,17 @@ int get_bit(Pin pin)
 
 int main(void)
 {
-  Pin pin1 = PIN10;
-  Pin pin2 = PIN20;
+  // Simulated output ports (just regular 8-bit integers)
+  uint8_t port1 = 0x00;
+  uint8_t port2 = 0x00;
 
-  int port1 = get_port(pin1);
-  int port2 = get_port(pin2);
-
-  printf("port for pin 1: %d\n", port1);
-  printf("port for pin 2: %d\n", port2);
-  
-  Pin pins1[] = {PIN10, PIN11, PIN12, PIN13, PIN14, PIN15, PIN16, PIN17};
-  for(int i=0;i < ARRAY_SIZE(pins1);i++){
-    int bit = get_bit(pins1[i]);
-    print_binary(bit);
-  }
-  
-  printf("\n");
-  Pin pins2[] = {PIN20, PIN21, PIN22, PIN23, PIN24, PIN25, PIN26, PIN27};
-  for(int i=0;i < ARRAY_SIZE(pins2);i++){
-    int bit = get_bit(pins2[i]);
-    print_binary(bit);
-  }
-
-
+  uint8_t* ptr_to_port1 = &port1;
+  *ptr_to_port1 = 1;
+  int deref = *ptr_to_port1;
+  int *ptr = &deref;
+  *ptr = 2;
+  printf("value in port1: %d\n", port1);
+  printf("%d\n", deref);
 
   return 0;
 }
