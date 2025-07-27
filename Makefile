@@ -29,6 +29,7 @@ CFLAGS += -Isrc
 SRCS      = src/main.c \
 						src/drivers/led.c \
 						src/drivers/pins.c \
+						src/drivers/uart_driver.c \
 						src/drivers/mcu_init.c
 
 OBJS      = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
