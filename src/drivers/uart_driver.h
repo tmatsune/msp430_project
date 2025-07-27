@@ -2,7 +2,8 @@
 #define UART_DRIVER_H
 
 void uart_init(void);
-void uart_puts(char *s);
-void print_polling(char *str);
+void _putchar(char c);
+//void uart_puts(char *s);
+//void print_polling(char *str);
 
 #endif

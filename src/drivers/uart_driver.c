@@ -29,15 +29,13 @@ void uart_init(void)
   UCA0CTL1 &= ~UCSWRST;    // Enable UART
 }
 
-void uart_puts(char *s) {
-  while (*s) {
-    unsigned int next_head = (tx_head + 1) % TX_BUFFER_SIZE;
-    // Wait if buffer is full
-    while (next_head == tx_tail);
-    tx_buffer[tx_head] = *s++;
-    tx_head = next_head;
-  }
-  // Start TX if not already active
+void _putchar(char c)
+{
+  unsigned int next_head = (tx_head + 1) % TX_BUFFER_SIZE;
+  while (next_head == tx_tail); // Wait if buffer is full
+  tx_buffer[tx_head] = c;
+  tx_head = next_head;
+
   if (!tx_active) {
     tx_active = 1;
     IE2 |= UCA0TXIE; // Enable TX interrupt
@@ -56,6 +54,25 @@ void USCI0TX_ISR(void)
   }
 }
 
+/*
+void uart_puts(char *s) {
+  while (*s) {
+    unsigned int next_head = (tx_head + 1) % TX_BUFFER_SIZE;
+    // Wait if buffer is full
+    while (next_head == tx_tail);
+    tx_buffer[tx_head] = *s++;
+    tx_head = next_head;
+  }
+  // Start TX if not already active
+  if (!tx_active) {
+    tx_active = 1;
+    IE2 |= UCA0TXIE; // Enable TX interrupt
+  }
+}
+*/
+
+
+/*
 void print_polling(char *str)
 {
 	unsigned int i = 0;
@@ -66,3 +83,5 @@ void print_polling(char *str)
 		i++;
 	}
 }
+*/ 
+
