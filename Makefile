@@ -40,6 +40,7 @@ SRCS      = src/main.c \
 						src/drivers/uart_driver.c \
 						src/drivers/mcu_init.c \
 						src/drivers/pwm.c \
+						src/drivers/adc.c \
 						external/printf/printf.c
 
 OBJS      = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
