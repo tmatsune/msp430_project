@@ -12,16 +12,24 @@ void adc_start_conversion(void){ ADC10CTL0 |= ADC10SC; }
 void adc_init(void)
 {
   ADC10CTL0 = ADC10ON + SREF_0 + ADC10SHT_2 + MSC + ADC10IE;
-  // turn on ADC, Set ref voltage to mcu votlage, 16 cycle hold time 
+  // turn on ADC 
+  // Set ref voltage to mcu votlage 
+  // 16 cycle hold time 
+  // multiple channel conversion 
+  // enable interrupts 
 
   ADC10CTL1 = INCH_7 + SHS_0 + ADC10DIV_7 + ADC10SSEL_0 + CONSEQ_1;
-  // Turn on ADC for P1.3, ADC10SC bit, ADC10 clock divider to 0, ADC clock source, single conversion mode
+  // Turn on ADC for P1.7-P1.0
+  // ADC10SC bit
+  // ADC10 clock divider to 7
+  // ADC clock source 
+  // multiple conversion mode
 
   ADC10AE0 = BIT5 | BIT4 | BIT3 | BIT0;
-  ADC10DTC0 = ADC10CT;
-  ADC10DTC1 = ADC_COUNT;
-  ADC10SA = (uint16_t)adc_mem;
-  ADC10CTL0 |= ENC + ADC10SC; 
+  ADC10DTC0 = ADC10CT;                    // continuous transfer 
+  ADC10DTC1 = ADC_COUNT; 
+  ADC10SA = (uint16_t)adc_mem;            // adc memory block 
+  ADC10CTL0 |= ENC + ADC10SC;             // enable and start conversion 
 }
 
 void adc_get_values(uint16_t* values)
