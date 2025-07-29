@@ -20,7 +20,6 @@ TI_CCS_DIR = $(TOOLS_DIR)/ccs2020/ccs
 DEBUG_BIN_DIR = $(TI_CCS_DIR)/ccs_base/DebugServer/bin
 DEBUG_DRIVERS_DIR = $(TI_CCS_DIR)/ccs_base/DebugServer/drivers
 
-
 INCLUDES = $(MSP430_INCLUDE) external/printf
 
 # === Compiler & Flags & Debug ===
@@ -35,10 +34,12 @@ CFLAGS += -Isrc
 
 # === Source and Targets ===
 SRCS      = src/main.c \
+						src/common/assert_handler.c \
 						src/drivers/led.c \
 						src/drivers/pins.c \
 						src/drivers/uart_driver.c \
 						src/drivers/mcu_init.c \
+						src/drivers/pwm.c \
 						external/printf/printf.c
 
 OBJS      = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

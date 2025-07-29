@@ -1,6 +1,7 @@
-#ifndef ASSERT_HANDLER_H
-#define ASSERT_HANDLER_H
+#ifndef ASSERT_H
+#define ASSERT_H
 
-#define BREAKPOINT __asm volatile("CLR.B R3");
+void assert_handler(int condition, char *msg);
+#define ASSERT(cond, msg) assert_handler(cond, msg)
 
-#endif 
+#endif

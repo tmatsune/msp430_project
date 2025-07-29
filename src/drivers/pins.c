@@ -1,5 +1,5 @@
 #include "pins.h"
-#include "commons/defines.h"
+#include "common/defines.h"
 #include <msp430.h>
 #include <stdint.h>
 #include <stddef.h>

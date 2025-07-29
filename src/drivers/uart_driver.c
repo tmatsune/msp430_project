@@ -54,6 +54,17 @@ void USCI0TX_ISR(void)
   }
 }
 
+void print_polling(char *str)
+{
+	unsigned int i = 0;
+	while(str[i] != '\0')
+	{
+		while (!(IFG2&UCA0TXIFG));		// Check if TX is ongoing
+		UCA0TXBUF = str[i];			// TX -> Received Char + 1
+		i++;
+	}
+}
+
 /*
 void uart_puts(char *s) {
   while (*s) {
@@ -70,18 +81,4 @@ void uart_puts(char *s) {
   }
 }
 */
-
-
-/*
-void print_polling(char *str)
-{
-	unsigned int i = 0;
-	while(str[i] != '\0')
-	{
-		while (!(IFG2&UCA0TXIFG));		// Check if TX is ongoing
-		UCA0TXBUF = str[i];			// TX -> Received Char + 1
-		i++;
-	}
-}
-*/ 
 
